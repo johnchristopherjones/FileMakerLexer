@@ -1,0 +1,4 @@
+
+    [pygments.lexers]
+    filemakerlexer = filemakerlexer.lexer:FileMakerLexer
+    

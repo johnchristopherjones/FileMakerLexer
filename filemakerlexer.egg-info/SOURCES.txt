@@ -1,0 +1,6 @@
+setup.py
+filemakerlexer.egg-info/PKG-INFO
+filemakerlexer.egg-info/SOURCES.txt
+filemakerlexer.egg-info/dependency_links.txt
+filemakerlexer.egg-info/entry_points.txt
+filemakerlexer.egg-info/top_level.txt
