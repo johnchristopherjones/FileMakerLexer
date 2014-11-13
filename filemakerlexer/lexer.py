@@ -34,12 +34,12 @@ class FileMakerLexer(RegexLexer):
             (_name + r'::' + _name, Name, ('#pop', 'operator'))
         ],
         'function': [
-            (r'(' + _name + ')\s*(\(\s*)',
-                bygroups(Name.Function, Name.Punctuation), 'expression'),
-            (r'\)', Name.Punctuation, ('#pop', 'operator'))
+            (r'(' + _name + ')\s*(\()',
+                bygroups(Name.Function, Punctuation), 'expression'),
+            (r'\)', Punctuation, ('#pop', 'operator'))
         ],
         'list': [
-            (r'\[', Name.Punctuation, 'expression'),
+            (r'\[', Punctuation, 'expression'),
             (r';', Punctuation, ('#pop', 'expression')),
         ],
         'expression': [
@@ -49,16 +49,17 @@ class FileMakerLexer(RegexLexer):
             include('constant'),
             include('variable'),
             include('list'),
-            (r'\(', Name.Punctuation, 'expression'),
+            (r'\(', Punctuation, 'expression'),
         ],
         'operator': [
             include('commentsandwhitespace'),
-            (r'[*+-/&^=<>]|not|and|or', Operator, ('#pop', 'expression')),
+            (r'[*+-/&^=<>]', Operator, ('#pop', 'expression')),
+            (r'not|and|or', Operator.Word, ('#pop', 'expression')),
             (u'≠|≤|≥', Operator, ('#pop', 'expression')),
             # Saw end of expression (function or group) instead
-            (r'\)', Name.Punctuation, ('#pop', 'operator')),
-            (r'\]', Name.Punctuation, ('#pop', 'operator')),
-            (r';', Name.Punctuation, ('#pop', 'expression')),
+            (r'\)', Punctuation, ('#pop', 'operator')),
+            (r'\]', Punctuation, ('#pop', 'operator')),
+            (r';', Punctuation, ('#pop', 'expression')),
         ],
         'root': [
             (r'\[', Error),
