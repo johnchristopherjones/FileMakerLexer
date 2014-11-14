@@ -5,9 +5,11 @@ import re
 from pygments.lexer import RegexLexer, bygroups, include
 from pygments.token import *
 
+__all__ = ['FileMakerLexer']
+
 class FileMakerLexer(RegexLexer):
     name = 'FileMaker'
-    alias = 'fmcalc'
+    aliases = ['fmcalc', 'fmfn', 'filemaker']
     filenames = ['*.fmcalc', '*.fmfn']
     flags = re.DOTALL | re.UNICODE | re.MULTILINE
     _name = r'[^\,\+\-\*\/\^\&\=\≠\>\<\(\)\[\]\{\}\"\;\:\$\s]+\s*'
